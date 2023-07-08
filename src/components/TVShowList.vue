@@ -1,0 +1,39 @@
+<template>
+  <div v-if="loading">Loading...</div>
+  <div v-else-if="error">Error: {{ error }}</div>
+  <div v-else-if="totalShows === 0">No shows found</div>
+
+  <ul v-else class="tv-show-ul">
+    <li>
+      <TVShowCard v-for="show in tvShows" :key="show.id" :show="show" />
+    </li>
+  </ul>
+</template>
+  
+<script setup lang="ts">
+import TVShowCard from './TVShowCard.vue';
+import { useTVShows } from '../composable/useTVShows';
+import { onMounted } from 'vue';
+
+const { tvShows, totalShows, currentPage, loading, error, page, fetchTvShows, } = useTVShows();
+
+
+
+onMounted(async () => {
+  await fetchTvShows();
+});
+
+
+</script>
+  
+<style scoped>
+.tv-show-ul {
+  display: grid;
+    grid-gap: 3em 2em;
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    list-style: none;
+    margin: 0; 
+}
+
+</style>
+  

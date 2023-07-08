@@ -4,8 +4,8 @@
   <div v-else-if="totalShows === 0">No shows found</div>
 
   <ul v-else class="tv-show-ul">
-    <li>
-      <TVShowCard v-for="show in tvShows" :key="show.id" :show="show" />
+    <li v-for="show in tvShows" :key="show.id">
+      <TVShowCard :show="show" />
     </li>
   </ul>
 </template>
@@ -17,8 +17,6 @@ import { onMounted } from 'vue';
 
 const { tvShows, totalShows, currentPage, loading, error, page, fetchTvShows, } = useTVShows();
 
-
-
 onMounted(async () => {
   await fetchTvShows();
 });
@@ -29,11 +27,10 @@ onMounted(async () => {
 <style scoped>
 .tv-show-ul {
   display: grid;
-    grid-gap: 3em 2em;
-    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
-    list-style: none;
-    margin: 0; 
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  list-style: none;
+  margin: 0;
 }
-
 </style>
   

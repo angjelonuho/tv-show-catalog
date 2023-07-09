@@ -18,7 +18,7 @@ export const useTVShowCategories = () => {
                         uniqueGenres.add(genre);
                     }
                 }
-                categories.value = Array.from(uniqueGenres)
+                categories.value = ['All', ...Array.from(uniqueGenres)];
             }
         } catch (err) {
             console.error('[useTVShowCategories] Error:', err);

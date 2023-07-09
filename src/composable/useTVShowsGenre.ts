@@ -3,10 +3,10 @@ import { TV_SHOWS_CACHE_KEY } from '../constants/tvShowsApi';
 import { useFetchCached } from './useFetch';
 
 export const useTVShowsByGenre = () => {
-    const tvShows = ref<TVShow[]>([]);
-    const totalShows = ref<number>(0);
-    const page = ref<number>(1);
-    const url: string = `${import.meta.env.VITE_TVMAZE_API_URL}/shows?page=${page.value}`;
+    const tvShowsByGenre = ref<TVShow[]>([]);
+    const totalShowsByGenre = ref<number>(0);
+    const pageGenre = ref<number>(1);
+    const url: string = `${import.meta.env.VITE_TVMAZE_API_URL}/shows?pageGenre=${pageGenre.value}`;
 
     const { data, error, loading, fetchData } = useFetchCached(TV_SHOWS_CACHE_KEY, url);
 
@@ -15,8 +15,8 @@ export const useTVShowsByGenre = () => {
             await fetchData();
             if (data) {
                 const showsByGenre = data.value.filter((show: { genres: string | string[]; }) => show.genres.includes(genre));
-                tvShows.value = showsByGenre;
-                totalShows.value = data.value.length;
+                tvShowsByGenre.value = showsByGenre;
+                totalShowsByGenre.value = data.value.length;
             }
         } catch (err) {
             console.error('[useTVShowsByGenre] Error:', err);
@@ -24,18 +24,18 @@ export const useTVShowsByGenre = () => {
     };
 
     const currentPage = (value: number): void => {
-        page.value = value
+        pageGenre.value = value
     }
 
-    watch(page, currentPage)
+    watch(pageGenre, currentPage)
 
     return {
-        tvShows,
-        totalShows,
+        tvShowsByGenre,
+        totalShowsByGenre,
         currentPage,
-        loading,
-        error,
-        page,
+        tvShowByGenreLoading: loading,
+        tvShowByGenreError: error,
+        pageGenre,
         fetchTvShowsByGenre,
     };
 

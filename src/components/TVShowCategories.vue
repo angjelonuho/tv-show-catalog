@@ -10,15 +10,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-defineProps({
+const props = defineProps({
     categories: {
         type: Array as () => string[],
         required: true
+    },
+    defaultCategory: {
+        type: String,
+        default: '',
+        required: false
     }
 });
 
 const emit = defineEmits(['category-selected']);
-const selectedCategory = ref<string>('');
+const selectedCategory = ref<string>(props.defaultCategory);
 
 const selectCategory = (category: string) => {
     selectedCategory.value = category;

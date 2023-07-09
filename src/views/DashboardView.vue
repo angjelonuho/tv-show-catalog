@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard-view">
-    <TVShowCategories :categories="categories" @category-selected="onCategorySelected" />
-    <TVShowList :tv-shows="tvShows" :total-shows="totalShows" :error="error" :loading="loading" />
+    <TVShowCategories :categories="categories" @category-selected="onCategorySelected" :defaultCategory="selectedCategory" />
+    <TVShowList v-if="selectedCategory === 'All'" :tv-shows="tvShows" :total-shows="totalShows" :error="error" :loading="loading" />
+    <TVShowList v-else :tv-shows="tvShowsByGenre" :total-shows="totalShowsByGenre" :error="tvShowByGenreError" :loading="tvShowByGenreLoading" />
   </div>
 </template>
 
@@ -14,10 +15,11 @@ import TVShowCategories from '../components/TVShowCategories.vue';
 import { useTVShowCategories } from '../composable/useTVShowCategories';
 import { useTVShowsByGenre } from '../composable/useTVShowsGenre';
 
-const selectedCategory = ref('');
+
 const { fetchCategories, categories } = useTVShowCategories();
-const { tvShows, totalShows, error, loading, fetchTvShowsByGenre } = useTVShowsByGenre();
-const { fetchTvShows } = useTVShows();
+const { tvShowsByGenre, totalShowsByGenre, tvShowByGenreError, tvShowByGenreLoading, fetchTvShowsByGenre } = useTVShowsByGenre();
+const { fetchTvShows, tvShows, totalShows, error, loading } = useTVShows();
+
 
 onMounted(async () => {
   await fetchTvShows();
@@ -25,6 +27,7 @@ onMounted(async () => {
 
 });
 
+const selectedCategory = ref('All');
 watch(selectedCategory, async () => {
   await fetchTvShowsByGenre(selectedCategory.value);
 });

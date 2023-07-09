@@ -2,7 +2,7 @@ import { ref, watch } from 'vue';
 import { TV_SHOWS_CACHE_KEY } from '../constants/tvShowsApi';
 import { useFetchCached } from './useFetch';
 
-export const useTVShowsByGenre = (genre: string) => {
+export const useTVShowsByGenre = () => {
     const tvShows = ref<TVShow[]>([]);
     const totalShows = ref<number>(0);
     const page = ref<number>(1);
@@ -10,7 +10,7 @@ export const useTVShowsByGenre = (genre: string) => {
 
     const { data, error, loading, fetchData } = useFetchCached(TV_SHOWS_CACHE_KEY, url);
 
-    const fetchTvShows = async (): Promise<void> => {
+    const fetchTvShowsByGenre = async (genre: string): Promise<void> => {
         try {
             await fetchData();
             if (data) {
@@ -27,7 +27,7 @@ export const useTVShowsByGenre = (genre: string) => {
         page.value = value
     }
 
-    watch(page, fetchTvShows)
+    watch(page, currentPage)
 
     return {
         tvShows,
@@ -36,7 +36,7 @@ export const useTVShowsByGenre = (genre: string) => {
         loading,
         error,
         page,
-        fetchTvShows,
+        fetchTvShowsByGenre,
     };
 
 }

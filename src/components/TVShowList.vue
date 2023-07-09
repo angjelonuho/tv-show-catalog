@@ -13,14 +13,23 @@
 <script setup lang="ts">
 import TVShowCard from './TVShowCard.vue';
 
-import { useTVShowsByGenre } from '../composable/useTVShowsGenre';
-import { onMounted } from 'vue';
-
-const { tvShows, totalShows, error, loading, fetchTvShows, } = useTVShowsByGenre('Comedy');
-
-
-onMounted(async () => {
-  await fetchTvShows();
+defineProps({
+  tvShows: {
+    type: Array as () => TVShow[],
+    required: true
+  },
+  totalShows: {
+    type: Number,
+    required: true
+  },
+  error: {
+    type: String,
+    required: false
+  },
+  loading: {
+    type: Boolean,
+    required: true
+  }
 });
 
 

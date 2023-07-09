@@ -24,7 +24,7 @@ export const useTVShows = () => {
     const currentPage = (value: number): void => {
         page.value = value
     }
-    watch(page, fetchTvShows)
+    watch(page, currentPage)
 
     return {
         tvShows,

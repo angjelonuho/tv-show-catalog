@@ -8,3 +8,9 @@ declare interface TVShow {
     summary: string
 }
 
+declare interface TVShowsByGenreResponse {
+    tvShows: TVShow[];
+    totalShows: number;
+    loading: Ref<boolean>;
+    error: Ref<string | null>;
+  }

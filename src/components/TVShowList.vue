@@ -12,10 +12,12 @@
   
 <script setup lang="ts">
 import TVShowCard from './TVShowCard.vue';
-import { useTVShows } from '../composable/useTVShows';
+
+import { useTVShowsByGenre } from '../composable/useTVShowsGenre';
 import { onMounted } from 'vue';
 
-const { tvShows, totalShows, currentPage, loading, error, page, fetchTvShows, } = useTVShows();
+const { tvShows, totalShows, error, loading, fetchTvShows, } = useTVShowsByGenre('Comedy');
+
 
 onMounted(async () => {
   await fetchTvShows();

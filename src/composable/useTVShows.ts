@@ -16,6 +16,7 @@ export const useTVShows = () => {
             await fetchData();
             tvShows.value = data.value;
             totalShows.value = data.value.length;
+            console.log('[useTVShows] total:',  totalShows.value)
         } catch (err) {
             console.log('[useTVShows]' + err);
         }

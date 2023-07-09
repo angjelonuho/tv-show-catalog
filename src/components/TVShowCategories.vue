@@ -45,6 +45,8 @@ const selectCategory = (category: string) => {
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 
 .tv-show-cat-li {

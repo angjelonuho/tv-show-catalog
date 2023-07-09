@@ -8,14 +8,14 @@ export const useFetch = <T>(url: string, config: AxiosRequestConfig = {}, skipFe
     const loading: Ref<boolean> = ref(false)
     const response: Ref<AxiosResponse<T> | null> = ref(null)
 
-    const fetchData = async (): Promise<void> => {
+    const fetchData = async () => {
         loading.value = true
         try {
             const result: AxiosResponse<T> = await axios.request({ url, ...config })
             response.value = result
             data.value = result.data
         } catch (err) {
-            error.value = (err as AxiosError).message
+            error.value = (err as AxiosError).message || null
         } finally {
             loading.value = false
         }

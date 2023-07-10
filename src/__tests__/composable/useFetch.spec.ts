@@ -1,8 +1,5 @@
-import { useFetch, useFetchCached } from '../../composable/useFetch'
+import { useFetch } from '../../composable/useFetch'
 import { describe, expect, it } from 'vitest'
-import sinon from 'sinon'
-import { reactive } from 'vue';
-
 
 describe('useFetch', () => {
     it('should handle errors', async () => {

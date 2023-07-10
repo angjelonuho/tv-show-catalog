@@ -4,13 +4,14 @@
   <div v-else-if="totalShows === 0">No shows found</div>
 
   <ul v-else class="tv-show-ul">
-    <li v-for="show in tvShows" :key="show.id">
+    <li v-for="show in tvShows" :key="show.id" @click="routerPush('tvshow', { id: String(show.id) } )">
       <TVShowCard :show="show" />
     </li>
   </ul>
 </template>
   
 <script setup lang="ts">
+import { routerPush } from '../router';
 import TVShowCard from './TVShowCard.vue';
 
 defineProps({
@@ -31,7 +32,6 @@ defineProps({
     required: true
   }
 });
-
 
 </script>
   

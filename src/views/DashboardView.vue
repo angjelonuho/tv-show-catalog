@@ -1,9 +1,12 @@
 <template>
   <div class="dashboard-view">
     <TVShowSearch />
-    <TVShowCategories :categories="categories" @category-selected="onCategorySelected" :defaultCategory="selectedCategory" />
-    <TVShowList v-if="selectedCategory === 'All'" :tv-shows="tvShows" :total-shows="totalShows" :error="error" :loading="loading" />
-    <TVShowList v-else :tv-shows="tvShowsByGenre" :total-shows="totalShowsByGenre" :error="tvShowByGenreError" :loading="tvShowByGenreLoading" />
+    <TVShowCategories :categories="categories" @category-selected="onCategorySelected"
+      :defaultCategory="selectedCategory" />
+    <TVShowList v-if="selectedCategory === 'All'" :tv-shows="tvShows" :total-shows="totalShows" :error="error"
+      :loading="loading" />
+    <TVShowList v-else :tv-shows="tvShowsByGenre" :total-shows="totalShowsByGenre" :error="tvShowByGenreError"
+      :loading="tvShowByGenreLoading" />
   </div>
 </template>
 
@@ -16,8 +19,6 @@ import TVShowCategories from '../components/TVShowCategories.vue';
 import { useTVShowCategories } from '../composable/useTVShowCategories';
 import { useTVShowsByGenre } from '../composable/useTVShowsGenre';
 import TVShowSearch from '../components/TVShowSearch.vue';
-
-
 
 const { fetchCategories, categories } = useTVShowCategories();
 const { tvShowsByGenre, totalShowsByGenre, tvShowByGenreError, tvShowByGenreLoading, fetchTvShowsByGenre } = useTVShowsByGenre();

@@ -42,4 +42,9 @@ const onCategorySelected = (category: string) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.dashboard-view {
+  width: 90vw;
+  margin: 0 auto;
+}
+</style>

@@ -6,7 +6,10 @@ declare interface TVShow {
     rating: {
         average: number | null
     }
-    image: string
+    image: {
+        medium: string
+        original: string
+    }
     summary: string
 }
 

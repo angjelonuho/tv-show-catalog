@@ -4,7 +4,7 @@
   <div v-else-if="totalShows === 0">No shows found</div>
 
   <ul v-else class="tv-show-ul">
-    <li v-for="show in sortedShows" :key="show.id" @click="routerPush('tvshow', { slug: String(show.id) })">
+    <li class="tv-show-li" v-for="show in sortedShows" :key="show.id" @click="routerPush('tvshow', { slug: String(show.id) })">
       <TVShowCard :show="show" />
     </li>
   </ul>
@@ -50,6 +50,10 @@ const sortedShows = computed(() => {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.tv-show-li {
+  cursor: pointer;
 }
 </style>
   

@@ -6,7 +6,8 @@
         <div v-else-if="error">Error: {{ error }}</div>
 
         <ul class="tv-show-search-ul" v-else-if="searchResults.length > 0 && showResults">
-            <li class="tv-show-search-li" v-for="item in searchResults" :key="item.id"  @click="routerPush('tvshow', { slug: String(item.id) })">
+            <li class="tv-show-search-li" v-for="item in searchResults" :key="item.id"
+                @click="routerPush('tvshow', { slug: String(item.id) })">
                 <TVShowSearchItem :show="item" />
             </li>
         </ul>
@@ -54,7 +55,7 @@ const handleClickOutside = (event: any) => {
     grid-template-columns: 1fr auto;
     gap: 1rem;
     margin: 0;
-    padding: .5rem;
+    padding: 1rem;
     border-radius: 6px;
     border: 1px solid #ccc;
 }
@@ -66,28 +67,39 @@ const handleClickOutside = (event: any) => {
     list-style: none;
     gap: 1rem;
     padding: 1rem 0 1rem 0;
-    margin: 1rem 0;
     background: white;
     position: absolute;
-    z-index: 1;
     width: 90vw;
     overflow-x: hidden;
     height: 40vh;
     border: 7px solid white;
     border-radius: 20px;
+    margin: 2rem 0rem 1rem -16rem;
+    width: 30rem;
+    z-index: 5;
 
     &::-webkit-scrollbar {
         display: none;
     }
 }
 
-.tv-show-search-li{
+.tv-show-search-li {
     cursor: pointer;
-    
+
     &:hover {
         background-color: #f1f1f1;
     }
 
+}
+
+@media (max-width: 768px) {
+    .tv-show-search-ul {
+        width: 90vw;
+    }
+
+    .tv-show-search-ul {
+        margin: 2rem -0.5rem;
+    }
 }
 </style>
   

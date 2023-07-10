@@ -3,7 +3,9 @@ declare interface TVShow {
     name: string
     genres: string[]
     premiered: string
-    rating: number
+    rating: {
+        average: number | null
+    }
     image: string
     summary: string
 }

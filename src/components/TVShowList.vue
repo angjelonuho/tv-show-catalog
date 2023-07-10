@@ -4,17 +4,20 @@
   <div v-else-if="totalShows === 0">No shows found</div>
 
   <ul v-else class="tv-show-ul">
-    <li v-for="show in tvShows" :key="show.id" @click="routerPush('tvshow', { slug: String(show.id) } )">
+    <li v-for="show in sortedShows" :key="show.id" @click="routerPush('tvshow', { slug: String(show.id) })">
       <TVShowCard :show="show" />
     </li>
   </ul>
 </template>
   
 <script setup lang="ts">
+import { computed } from 'vue';
 import { routerPush } from '../router';
 import TVShowCard from './TVShowCard.vue';
+import { SortDirection, useSortByProperty } from '../composable/useSortByProperty';
 
-defineProps({
+
+const props = defineProps({
   tvShows: {
     type: Array as () => TVShow[],
     required: true
@@ -31,6 +34,10 @@ defineProps({
     type: Boolean,
     required: true
   }
+});
+
+const sortedShows = computed(() => {
+  return useSortByProperty(props.tvShows, 'rating.average', SortDirection.Descending);
 });
 
 </script>

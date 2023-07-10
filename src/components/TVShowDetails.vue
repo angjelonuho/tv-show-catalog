@@ -24,8 +24,6 @@
                         {{ tvShowById?.runtime }} min</p>
                 </div>
             </div>
-
-
         </div>
     </div>
 </template>
@@ -43,8 +41,6 @@ const { tvShowById, loading, error, fetchTVShowById } = useTVShowById()
 onMounted(async () => {
     await fetchTVShowById(slug)
 })
-
-
 
 </script>
 

@@ -4,7 +4,7 @@
   <div v-else-if="totalShows === 0">No shows found</div>
 
   <ul v-else class="tv-show-ul">
-    <li v-for="show in tvShows" :key="show.id" @click="routerPush('tvshow', { id: String(show.id) } )">
+    <li v-for="show in tvShows" :key="show.id" @click="routerPush('tvshow', { slug: String(show.id) } )">
       <TVShowCard :show="show" />
     </li>
   </ul>

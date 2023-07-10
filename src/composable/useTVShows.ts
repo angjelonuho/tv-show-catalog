@@ -2,7 +2,7 @@ import { ref, watch } from 'vue';
 import { useFetchCached } from './useFetch';
 import { TV_SHOWS_CACHE_KEY } from '../constants/tvShowsApi';
 
-export const useTVShows = () => {
+export const useTVShows = (): TVShowResponse => {
 
     const tvShows = ref<TVShow[]>([]);
     const totalShows = ref<number>(0);
@@ -16,7 +16,7 @@ export const useTVShows = () => {
             await fetchData();
             tvShows.value = data.value;
             totalShows.value = data.value.length;
-            console.log('[useTVShows] total:',  totalShows.value)
+            console.log('[useTVShows] total:', totalShows.value)
         } catch (err) {
             console.log('[useTVShows]' + err);
         }

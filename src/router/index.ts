@@ -13,7 +13,7 @@ export const routes: RouteRecordRaw[] = [
     component: DashboardView
   },
   {
-    path: '/tvshow/:id',
+    path: '/tvshow/:slug',
     name: 'tvshow',
     component: () => import('../views/TVShowView.vue')
   },

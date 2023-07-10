@@ -25,3 +25,20 @@ declare interface TVShowSearchResult {
     error: Ref<string | null>;
     search: () => Promise<void>;
 }
+
+declare interface TVShowByIdResponse {
+    tvShowById: Ref<TVShow>;
+    loading: Ref<boolean>;
+    error: Ref<string | null>;
+    fetchTVShowById: (id: string) => Promise<void>;
+}
+
+declare interface TVShowResponse {
+    tvShows: Ref<TVShow[]>;
+    totalShows: Ref<number>;
+    currentPage: (value: number) => void;
+    loading: Ref<boolean>;
+    error: Ref<string | null>;
+    page: Ref<number>;
+    fetchTvShows: () => Promise<void>;
+}

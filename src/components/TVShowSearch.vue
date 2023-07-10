@@ -5,7 +5,7 @@
         <div v-if="loading">Loading...</div>
         <div v-else-if="error">Error: {{ error }}</div>
 
-        <ul class="tv-show-search-ul" v-else-if="searchResults.length > 0">
+        <ul class="tv-show-search-ul" v-else-if="searchResults.length > 0 && showResults">
             <li v-for="item in searchResults" :key="item">
                 <TVShowSearchItem :show="item" />
             </li>
@@ -15,15 +15,28 @@
 </template>
   
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import { useSearch } from '../composable/useSearch';
 import TVShowSearchItem from './TVShowSearchItem.vue';
-
+const showResults = ref(true);
 
 const { searchResults, loading, error, search, searchQuery } = useSearch();
 
 const handleSearch = async () => {
+    showResults.value = true;
     if (searchQuery.value.length === 3) {
         await search();
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('click', handleClickOutside);
+});
+
+const handleClickOutside = (event: any) => {
+    const searchContainer = document.querySelector('.tv-show-search');
+    if (!searchContainer?.contains(event.target)) {
+        showResults.value = false;
     }
 };
 

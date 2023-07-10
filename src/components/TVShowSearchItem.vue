@@ -26,7 +26,7 @@ const premieredYear = computed(() => {
 .tv-show-item {
     display: grid;
     grid-auto-columns: 1fr;
-    grid-template-columns: 0fr 1fr; 
+    grid-template-columns: 0fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:

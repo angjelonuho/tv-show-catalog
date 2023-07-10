@@ -8,7 +8,7 @@ export const useSearch = (): TVShowSearchResult => {
     const error: Ref<string | null> = ref(null)
 
     const search = async () => {
-        if (searchQuery.value.length === 3) {
+        if (searchQuery.value.length > 2) {
             try {
                 loading.value = true;
                 const url = `${import.meta.env.VITE_TVMAZE_API_URL}/search/shows?q=${searchQuery.value}`;

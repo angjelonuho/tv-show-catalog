@@ -44,7 +44,6 @@ const selectCategory = (category: string) => {
     gap: 1rem;
     align-items: center;
     justify-content: flex-start;
-    cursor: pointer;
     margin: 0;
     padding: 0;
 }
@@ -56,6 +55,7 @@ const selectCategory = (category: string) => {
     background: rgb(0 0 0/ 5%);
     padding: .2rem .5rem .4rem .5rem;
     font-weight: 400;
+    cursor: pointer;
 
     &:hover {
         background: rgb(0 0 0/ 10%);

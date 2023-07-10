@@ -1,14 +1,19 @@
 <template>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">Error: {{ error }}</div>
-    <div class="tv-show-details">
+    <div v-else-if="tvShowById === undefined">
+        <p class="no-data">no details found</p>
+    </div>
+
+    <div v-else class="tv-show-details">
         <div class="tv-show-details-cover">
-            <img class="tv-show-details-image" :src="tvShowById?.image?.original" :alt="tvShowById?.name" />
+            <img class="tv-show-details-image" :src="tvShowById?.image?.original"
+                :alt="tvShowById?.name" />
         </div>
 
         <div class="tv-show-details-info">
-
-            <img class="tv-show-details-info-image" :src="tvShowById?.image?.medium" :alt="tvShowById?.name" />
+            <img class="tv-show-details-info-image" :src="tvShowById?.image?.medium"
+                :alt="tvShowById?.name" />
             <div class="tv-show-details-info-grid">
                 <h1 class="tv-show-details-title">{{ tvShowById?.name }}</h1>
                 <p class="tv-show-details-summary" v-html="tvShowById?.summary" />
@@ -137,6 +142,14 @@ onMounted(async () => {
         ". .";
 }
 
+.no-data {
+    font-size: xxx-large;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    width: 100vw;
+}
+
 @media (max-width: 768px) {
     .tv-show-details-info {
 
@@ -147,4 +160,5 @@ onMounted(async () => {
             "."
             ".";
     }
-}</style>
+}
+</style>

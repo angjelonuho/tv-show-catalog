@@ -6,7 +6,7 @@
         <div v-else-if="error">Error: {{ error }}</div>
 
         <ul class="tv-show-search-ul" v-else-if="searchResults.length > 0 && showResults">
-            <li v-for="item in searchResults" :key="item">
+            <li class="tv-show-search-li" v-for="item in searchResults" :key="item.id"  @click="routerPush('tvshow', { slug: String(item.id) })">
                 <TVShowSearchItem :show="item" />
             </li>
         </ul>
@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useSearch } from '../composable/useSearch';
+import { routerPush } from '../router';
 import TVShowSearchItem from './TVShowSearchItem.vue';
 const showResults = ref(true);
 
@@ -24,7 +25,7 @@ const { searchResults, loading, error, search, searchQuery } = useSearch();
 
 const handleSearch = async () => {
     showResults.value = true;
-    if (searchQuery.value.length === 3) {
+    if (searchQuery.value.length > 2) {
         await search();
     }
 };
@@ -78,6 +79,15 @@ const handleClickOutside = (event: any) => {
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+.tv-show-search-li{
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #f1f1f1;
+    }
+
 }
 </style>
   

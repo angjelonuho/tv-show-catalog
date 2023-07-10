@@ -17,7 +17,7 @@ import { useTVShows } from '../composable/useTVShows';
 import TVShowList from '../components/TVShowList.vue';
 import TVShowCategories from '../components/TVShowCategories.vue';
 import { useTVShowCategories } from '../composable/useTVShowCategories';
-import { useTVShowsByGenre } from '../composable/useTVShowsGenre';
+import { useTVShowsByGenre } from '../composable/useTVShowsByGenre';
 import TVShowSearch from '../components/TVShowSearch.vue';
 
 const { fetchCategories, categories } = useTVShowCategories();
@@ -47,4 +47,4 @@ const onCategorySelected = (category: string) => {
   width: 90vw;
   margin: 0 auto;
 }
-</style>
+</style>../composable/useTVShowsByGenre
